@@ -1,16 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Post from '../post/post'
+
 function Magazine(props) {
-    
+
     return (
         <>
-            <div className="card" style={{ width: "400px", margin: "10px", float: "right" }}>
-                <img className="card-img-top" src={ } alt={props.magazines} style={{ width: "100%" }} />
-                <div className="card-body">
-                    <p className="card-text">{props.magazines}</p>
-                </div>
-            </div>
+            {
+               props.magazines && props.magazines.map(magazine =>
+                    <>
+                        <div className="card" style={{ width: "400px", margin: "10px", float: "right" }}>
+                            <img className="card-img-top" src={magazine.logo} style={{ width: "100%" }} />
+                            {
+                                magazine.map(post =>
+                                    <Post post={post}></Post>
+                                )
+                            }
+                        </div>
+                    </>)
+            }
         </>
     )
 }

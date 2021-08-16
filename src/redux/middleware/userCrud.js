@@ -1,6 +1,6 @@
 import actions from '../action'
 
-export const setUser = ({ disaptch, getState }) => next => action => {
+export const setUser = ({ dispatch, getState }) => next => action => {
     if (action.type == 'CHECK_AUTH') {
         let url = `http://localhost:3001/checkAuth/${action.payload.userName}/${action.payload.password}`
         fetch(url, {
@@ -9,9 +9,15 @@ export const setUser = ({ disaptch, getState }) => next => action => {
                 'authorization': action.payload.token
             }
         })
-            .then(response => response.json())
-            .then(result =>
-                disaptch(actions.setUser(result.user)))
+            .then(response => {
+                return response.json()
+            })
+            .then(result => {
+                if (result.result.user) {
+                    dispatch(actions.setUser(result.result.user))
+                    dispatch(actions.setMagazines(result.result.user.magazine))
+                }
+            })
             .catch(err => console.log(err))
     }
     return next(action)

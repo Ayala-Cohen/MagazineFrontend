@@ -1,9 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 import Cookies from 'universal-cookie'
 import actions from '../../redux/action'
 
 function LogIn(props) {
+    const [displayMagazine, setDisplayMagazine] = useState(false)
 
     const refToPassword = useRef()
     const refToUserName = useRef()
@@ -14,7 +16,12 @@ function LogIn(props) {
         let password = refToPassword.current.value
         let token = cookies.get('token')
         props.checkAuth({ userName: userName, password: password, token: token })
+        if (props.user.user)
+            setDisplayMagazine(true)
     }
+    if (displayMagazine)
+        return <Redirect to='/magazine' />
+
     return (
         <>
             <div className="container col-10">
@@ -33,9 +40,12 @@ function LogIn(props) {
         </>
     )
 }
+const mapStateToProps = (state) => {
+    return { user: state.user }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return { checkAuth: (user) => { dispatch(actions.checkAuth(user)) } }
 }
 
-export default connect(null, mapDispatchToProps)(LogIn)
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
