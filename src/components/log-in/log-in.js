@@ -27,14 +27,14 @@ function LogIn(props) {
             <div className="container col-10">
                 <div style={{ margin: "auto" }}>
                     <div className="form-group mb-3">
-                        <label className="form-row">שם משתמש:</label>
-                        <input type="email" placeholder="הכנס כתובת אמייל" className="col-12" ref={refToUserName} />
+                        <label className="form-row">User Name:</label>
+                        <input type="email" placeholder="enter your email" className="col-12" ref={refToUserName} />
                     </div>
                     <div className="form-group mb-3">
-                        <label className="form-row">סיסמה:</label>
-                        <input type="password" placeholder="הכנס סיסמה" className="col-12" ref={refToPassword} />
+                        <label className="form-row">Password:</label>
+                        <input type="password" placeholder="enter password" className="col-12" ref={refToPassword} />
                     </div>
-                    <button onClick={logIn} className="btn btn-info">התחבר</button><br />
+                    <button onClick={logIn} className="btn btn-info">Log in</button><br />
                 </div>
             </div>
         </>

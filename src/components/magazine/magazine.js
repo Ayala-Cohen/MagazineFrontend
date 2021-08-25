@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import AddMagazine from '../addMagazine/addMagazine'
 
 import Post from '../post/post'
 
@@ -7,6 +8,7 @@ function Magazine(props) {
 
     return (
         <>
+        <AddMagazine></AddMagazine>
             {
                props.magazines && props.magazines.map(magazine =>
                     <>
