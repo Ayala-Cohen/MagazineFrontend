@@ -1,0 +1,16 @@
+.asideMenu {
+    width: 13%;
+    background-color:rgb(58, 64, 94);
+    color: white;
+}
+
+button {
+    color: white;
+    background-color: rgb(166, 109, 255);
+    border-radius: 13px;
+    width: 150px;
+}
+
+input {
+    margin: 10px;
+}
