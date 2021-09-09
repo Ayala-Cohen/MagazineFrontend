@@ -6,7 +6,7 @@ const initalState = {
 }
 
 const magazineFunction = {
-    setMagazines(state, action){
+    setMagazineFromServer(state, action){
         state.magazines = action.payload
     },
     addMagazine(state, action){
