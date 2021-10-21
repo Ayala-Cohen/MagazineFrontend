@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import actions from '../../redux/action'
 
 function AddMagazine(props) {
-    const [magazine, setMagazine] = useState({ logo: "", title_text: "", title_color: "", hello_bar_title: "", hello_bar_color: "", hello_bar_button: "", hello_bar_button_color: "", user: {} })
+    const [magazine, setMagazine] = useState({ logo: "", title_text: "", title_color: "#000000",new_flash_line_color:"#009999", hello_bar_title: "", hello_bar_color: "#000000", hello_bar_button: "", hello_bar_button_color: "#ff0000", user: props.user })
     const changeProperty = (e) => {
         let element_id = e.target.id
         let element_value = e.target.value
@@ -27,7 +27,7 @@ function AddMagazine(props) {
                 <input className="input-text" type="text" placeholder="a title for the magazine" id="title_text" onChange={changeProperty} /><br />
 
                 <label>Newaflash & Line Color</label>
-                <input type="color" value="#009999" onChange={changeProperty} /><br />
+                <input type="color" value="#009999" onChange={changeProperty} id="new_flash_line_color"/><br />
                 <label>Hello Bar Title</label><br />
                 <input className="input-text" type="text" placeholder="hello bar title" id="hello_bar_title" onChange={changeProperty}></input><br />
                 <label>Hello Bar Color</label>
@@ -42,9 +42,13 @@ function AddMagazine(props) {
     )
 }
 
+const mapStateToProps = (state) => {
+    return { user: state.user.user}
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        // saveMagazine: (magazine) => dispatch(actions.saveMagazine(magazine))
+        saveMagazine: (magazine) => dispatch(actions.saveMagazine(magazine))
     }
 }
-export default connect(null, mapDispatchToProps)(AddMagazine)
+export default connect(mapStateToProps, mapDispatchToProps)(AddMagazine)

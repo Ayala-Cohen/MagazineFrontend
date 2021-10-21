@@ -2,7 +2,7 @@ import produce from "immer";
 import createReducer from '../reducerUtils'
 
 const initalState = {
-    user: {}
+    user: undefined
 }
 
 const userFunctions = {

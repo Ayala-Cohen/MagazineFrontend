@@ -5,7 +5,6 @@ import Cookies from 'universal-cookie'
 import actions from '../../redux/action'
 
 function LogIn(props) {
-    const [displayMagazine, setDisplayMagazine] = useState(false)
 
     const refToPassword = useRef()
     const refToUserName = useRef()
@@ -16,10 +15,8 @@ function LogIn(props) {
         let password = refToPassword.current.value
         let token = cookies.get('token')
         props.checkAuth({ userName: userName, password: password, token: token })
-        if (props.user.user)
-            setDisplayMagazine(true)
     }
-    if (displayMagazine)
+    if (props.user.user)
         return <Redirect to='/magazine' />
 
     return (
